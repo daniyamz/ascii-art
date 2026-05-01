@@ -22,6 +22,13 @@ func main() {
 	if inputfile == "" {
 		return
 	}
+	// for _, val := range inputfile {
+	// 	_, err := process.IsValidInput(inputfile)
+	// 	if err != nil {
+	// 		fmt.Println("Invalid Input", val)
+	// 	}
+	// }
+
 	// To check for space in the input
 	new_inputfile := strings.Split(inputfile, " ")
 	isspace := true
@@ -48,12 +55,10 @@ func main() {
 		}
 		for i := range 8 {
 			for _, ch := range word {
-				if ch < 32 || ch > 126 {
-					fmt.Println(string(ch))
-
+				_, err := process.IsValidInput(string(ch))
+				if err != nil {
+					fmt.Println("Invalid Input", string(ch))
 					return
-					//ch = ' '
-
 				}
 				start = (int(ch)-32)*9 + 1 // the starting point of you the character.
 				words = new_text[start : start+8]
